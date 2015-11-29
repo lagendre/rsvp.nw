@@ -2,9 +2,9 @@
   "name": "RSVP",
   "description": "RSVP",
   "version": "0.1",
-  "main": "rsvp.html",
+  "main": "index.html",
   "window": {
-    "toolbar": true,
+    "toolbar": false,
     "position": "center",
     "width": 1024,
     "height": 768
