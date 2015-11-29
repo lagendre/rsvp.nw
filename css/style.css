@@ -212,7 +212,7 @@ body {
 }
 
 .envelope .back .sticker:after {
-  content: url(../images/sticker.png);
+  content: url(../img/sticker.png);
   display: block;
   width: 100%;
   height: 100%;
