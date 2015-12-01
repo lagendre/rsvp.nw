@@ -33,7 +33,7 @@
     transform: translate3d(-100%, 0, 0) rotateY(-180deg);
   }
   100% {
-    transform: translate3d(-100%, 733.33333px, 0) rotateY(-180deg);
+    transform: translate3d(-100%, 748px, 0) rotateY(-180deg);
   }
 }
 
@@ -122,8 +122,8 @@ body {
             
         
 .envelope {
-  z-index: 2;
-  position: absolute;
+ //z-index: 2;
+  position: relative;
   width: 512px;
   height: 748px;
   left: 50%;
@@ -132,6 +132,7 @@ body {
   transform-style: preserve-3d;
   transform-origin: right center;
   transition: transform 1s ease;
+    -webkit-transition:  transform 1s ease;
 }
 
 .envelope .front, .envelope .back {
@@ -146,8 +147,8 @@ body {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     transform-style: preserve-3d;
-  cursor: pointer;
-      z-index: 1; /* for IE 9 */
+    cursor: pointer;
+    z-index: 1;
 }
 /*
 .envelope .front:focus {
@@ -173,9 +174,9 @@ body {
 
 
 .envelope .back {
-  transform: rotateY(180deg) translate3d(0, 0, 1px);
-     z-index: 2; /* for IE 9 */
+  transform: rotateY(180deg) translate3d(0, 0, 1px);   
 }
+
 .envelope .back .flap {
   position: absolute;
   width: 100%;
@@ -220,7 +221,7 @@ body {
 
 
 .envelope .back .letter {
-  z-index: 1;
+//  z-index: 1;
   position: absolute;
   right: 50%;
     width: 512px;
@@ -231,10 +232,18 @@ body {
   animation: new 1s forwards;
   -webkit-animation: new 1s forwards;
 }
+
 .envelope.open {
   animation: open 3s forwards;
   -webkit-animation: open 3s forwards;
 }
+
+
+//ie fixed for back
+.envelope.open .back {
+  z-index: 2; /* for IE 9 */
+}
+
 .envelope.open .top-flap {
   animation: flap-open 1s 1s forwards;
   -webkit-animation: flap-open 1s 1s forwards;    
