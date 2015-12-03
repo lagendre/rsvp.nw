@@ -1,5 +1,17 @@
 $(function(){
 
+//below android 3 not support 
+var ua = navigator.userAgent;
+if( ua.indexOf("Android") >= 0 )
+{
+  var androidversion = parseFloat(ua.slice(ua.indexOf("Android")+8)); 
+  if (androidversion < 3 && !(ua.indexOf('Chrome') > -1))
+  {
+	alert("瀏覽器不支援");
+    	window.location.href = '/'; 
+  }
+}
+
   if (!$('.envelope').hasClass('open')){
     $('.envelope').click(function(){
       $(this).removeClass('new').addClass('open');
@@ -7,7 +19,24 @@ $(function(){
   }
 
 //receiver on cover    
-$(".receiver").text( (window.location.href.indexOf('#') != -1 ? decodeURIComponent(window.location.href.slice(window.location.href.indexOf('#') + 1)) : "○ ○ ○") );
+    if ( window.location.href.indexOf('#') != -1  ){
+		var cName =decodeURIComponent(window.location.href.slice(window.location.href.indexOf('#') + 1));
+		 
+		var cArray = cName.split("");
+		 
+			
+	if (cArray.length<4){
+		cName ="";
+        	for (var i = 0; i < cArray.length; i++) {
+          		cName += cArray[i] + " ";
+       		}
+	}
+		
+		$(".receiver").text(cName );
+	}
+	else{
+		$(".receiver").text( "○ ○ ○");
+	}
 
 $("#content-slider").lightSlider({
                 //loop:true,
