@@ -28,7 +28,7 @@ if( ua.indexOf("Android") >= 0 )
 	if (cArray.length<4){
 		cName ="";
         	for (var i = 0; i < cArray.length; i++) {
-          		cName += cArray[i] + " ";
+          		cName += cArray[i] + "　";
        		}
 	}
 		
