@@ -221,7 +221,7 @@ body {
 
 
 .envelope .back .letter {
-//  z-index: 1;
+ z-index: 0;
   position: absolute;
   right: 50%;
     width: 512px;
@@ -239,9 +239,9 @@ body {
 }
 
 
-//ie fixed for back
+/* for IE 9 */
 .envelope.open .back {
-  z-index: 2; /* for IE 9 */
+  z-index: 2; 
 }
 
 .envelope.open .top-flap {
@@ -275,7 +275,7 @@ section .text{
 .cover_page{
         width: 512px;
         height: 748px;
-         cursor:grab;
+         cursor:move;
 }
     
     
@@ -388,3 +388,46 @@ envelope cover css
         margin-right: 0.250rem;
 
     }
+
+
+/*tutorial mask*/
+	ul{
+			list-style: none outside none;
+		    padding-left: 0;
+            margin: 0;
+		}
+
+		.content-slider li{
+		    text-align: center;
+		    color: #FFF;	
+           line-height: 200px;
+		}
+
+		
+.bgCover { 
+    background:#000; 
+    position:absolute; 
+    left:0; 
+    top:0; 
+    display:none; 
+    overflow:hidden; 
+    text-align: center; 
+    z-index: 999; 
+    font-size:200%;
+}
+
+.overlayBox {
+	position:absolute;
+	display:none;
+	width:550px;
+    z-index: 999;
+    top: 100px;
+}
+
+.closeLink {
+	float:right;
+	margin-right:-10px;
+	color:white ;
+	font-weight: bold; 
+	font-size:150%;
+}

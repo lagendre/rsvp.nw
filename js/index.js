@@ -3,36 +3,78 @@ $(function(){
   if (!$('.envelope').hasClass('open')){
     $('.envelope').click(function(){
       $(this).removeClass('new').addClass('open');
-    });
+    });     	
   }
-/*  
-  $('.mailform input, .mailform textarea').on('keyup', function(){
-    if(this.value !== ''){
-      $(this).prev('label').addClass('show');
-    } else {
-      $(this).prev('label').removeClass('show');
-    }
-  }).on("focus",function(){
-    $(this).prev("label").addClass('focus');
-  }).on("blur",function(){
-      $(this).prev("label").removeClass('focus');
-  });
-  
-  $('.notification').find('p').last().click(function(){
-   $(this).closest('.notification').prev('.envelope').removeClass('send').addClass('new');
-   $(this).closest('.notification').prev('.envelope').find('.mailform')[0].reset();
-    $(this).closest('.notification').prev('.envelope').find('label').removeClass('show');
-  });
-  
-  $('.mailform').submit(function(event) {
-    event.preventDefault();
-    
-    $(this).closest('.envelope').removeClass('open').addClass('send');
 
-    //Put jQuery code for submitting the form with AJAX here.
-  });
-  */
-    
-$(".receiver").text( (window.location.href.indexOf('#') != -1 ? decodeURIComponent(window.location.href.slice(window.location.href.indexOf('#') + 1)) : "○○○○○") );
+//receiver on cover    
+$(".receiver").text( (window.location.href.indexOf('#') != -1 ? decodeURIComponent(window.location.href.slice(window.location.href.indexOf('#') + 1)) : "○ ○ ○") );
 
+$("#content-slider").lightSlider({
+                //loop:true,
+				auto: true,
+                keyPress:true,
+				item:1,
+				 speed:500
+        });
+	
+
+		
+// close it when closeLink is clicked
+$('a.closeLink').click( doOverlayClose );    
+
+   
+    
+    
+if ( document.cookie.indexOf("visited") == -1 ) {
+           // open tutorial mask
+            doOverlayOpen();
+    
+    document.cookie ="visited=yes;  expires=Fri, 31 Dec 9999 23:59:59 GMT";
+}
+
+	$("#wedding").turn({
+		width:  1024,
+		height: 748,  
+		autoCenter: true
+	});    
+    
 });
+
+
+function doOverlayOpen() {
+	//set status to open
+	isOpen = true;
+	
+	//if box is not set to open then don't do anything
+	if( isOpen == false ) return;
+	// set the properties of the overlay box, the left and top positions
+	$('.overlayBox').css({
+		display:'block',
+		left:( $(window).width() - $('.overlayBox').width() )/2,
+		//top:( $(window).height() - $('.overlayBox').height() )/2 -80,
+		position:'absolute'
+	});
+	// set the window background for the overlay. i.e the body becomes darker
+	$('.bgCover').css({
+		display:'block',
+		width: $(window).width(),
+		height:$(window).height(),
+	});    
+    
+    
+	$('.bgCover').css({opacity:0}).animate( {opacity:0.5, backgroundColor:'#000'} );
+	// dont follow the link : so return false.
+	//return false;
+}
+function doOverlayClose() {
+
+	//set status to closed
+	isOpen = false;
+	$('.overlayBox').css( 'display', 'none' );
+	// now animate the background to fade out to opacity 0
+	// and then hide it after the animation is complete.
+	$('.bgCover').animate( {opacity:0}, null, null, function() { $(this).hide(); } );
+}
+// if window is resized then reposition the overlay box
+//$(window).bind('resize', showOverlayBox);
+
